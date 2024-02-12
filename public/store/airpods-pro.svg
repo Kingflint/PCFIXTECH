@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#F5F5F7"/>
+  <!-- Case -->
+  <rect x="130" y="80" width="140" height="160" rx="32" fill="#E8E8ED" stroke="#D2D2D7" stroke-width="2"/>
+  <!-- Case inner -->
+  <rect x="140" y="90" width="120" height="130" rx="24" fill="#F5F5F7"/>
+  <!-- Left earbud -->
+  <ellipse cx="165" cy="140" rx="18" ry="22" fill="#E8E8ED" stroke="#D2D2D7" stroke-width="1.5"/>
+  <ellipse cx="165" cy="138" rx="10" ry="12" fill="#1D1D1F"/>
+  <rect x="160" y="158" width="10" height="35" rx="5" fill="#E8E8ED" stroke="#D2D2D7" stroke-width="1"/>
+  <!-- Right earbud -->
+  <ellipse cx="235" cy="140" rx="18" ry="22" fill="#E8E8ED" stroke="#D2D2D7" stroke-width="1.5"/>
+  <ellipse cx="235" cy="138" rx="10" ry="12" fill="#1D1D1F"/>
+  <rect x="230" y="158" width="10" height="35" rx="5" fill="#E8E8ED" stroke="#D2D2D7" stroke-width="1"/>
+  <!-- Status LED -->
+  <circle cx="200" cy="230" r="4" fill="#30D158" opacity="0.8"/>
+  <!-- Hinge line -->
+  <line x1="140" y1="220" x2="260" y2="220" stroke="#D2D2D7" stroke-width="1"/>
+  <!-- USB-C -->
+  <rect x="190" y="240" width="20" height="6" rx="3" fill="#D2D2D7"/>
+  <!-- Label -->
+  <text x="200" y="300" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#1D1D1F">AirPods Pro</text>
+  <text x="200" y="320" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#86868B">2nd Generation</text>
+</svg>

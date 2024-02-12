@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#F5F5F7"/>
+  <!-- iPad body -->
+  <rect x="110" y="60" width="180" height="260" rx="14" fill="#5E5CE6" stroke="#4B4ACF" stroke-width="2"/>
+  <!-- Screen -->
+  <rect x="120" y="70" width="160" height="230" rx="6" fill="#2C2C2E"/>
+  <!-- Screen content gradient -->
+  <rect x="120" y="70" width="160" height="230" rx="6" fill="url(#airGrad)"/>
+  <!-- Camera -->
+  <circle cx="200" cy="65" r="3" fill="#4B4ACF"/>
+  <!-- Home indicator -->
+  <rect x="170" y="290" width="60" height="4" rx="2" fill="#3A3A3C"/>
+  <!-- Widget placeholders -->
+  <rect x="135" y="100" width="55" height="55" rx="12" fill="rgba(255,255,255,0.15)"/>
+  <rect x="200" y="100" width="55" height="55" rx="12" fill="rgba(255,255,255,0.1)"/>
+  <rect x="135" y="165" width="120" height="40" rx="10" fill="rgba(255,255,255,0.1)"/>
+  <!-- Label -->
+  <text x="200" y="370" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#1D1D1F">iPad Air M1</text>
+  <defs>
+    <linearGradient id="airGrad" x1="120" y1="70" x2="280" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF9F0A" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#FF375F" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#5E5CE6" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#F5F5F7"/>
+  <!-- iPad body -->
+  <rect x="100" y="50" width="200" height="280" rx="16" fill="#1D1D1F" stroke="#2D2D2F" stroke-width="2"/>
+  <!-- Screen -->
+  <rect x="110" y="60" width="180" height="250" rx="8" fill="#2C2C2E"/>
+  <!-- Screen content gradient -->
+  <rect x="110" y="60" width="180" height="250" rx="8" fill="url(#screenGrad)"/>
+  <!-- Camera -->
+  <circle cx="200" cy="55" r="3" fill="#3A3A3C"/>
+  <!-- Home indicator -->
+  <rect x="170" y="300" width="60" height="4" rx="2" fill="#3A3A3C"/>
+  <!-- Apple Pencil hint -->
+  <rect x="308" y="80" width="6" height="180" rx="3" fill="#86868B"/>
+  <!-- Label -->
+  <text x="200" y="380" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#1D1D1F">iPad Pro 12.9″</text>
+  <defs>
+    <linearGradient id="screenGrad" x1="110" y1="60" x2="290" y2="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A84FF" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#5E5CE6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#BF5AF2" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+</svg>
