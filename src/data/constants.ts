@@ -1,4 +1,7 @@
-// Pricing, delivery, and business constants
+// Pricing, delivery, and business constants.
+//
+// All amounts are in Naira (NGN) unless documented otherwise. Defaults can be
+// overridden in the ifixit_settings/main Firestore document.
 
 export const DEFAULT_SERVICE_FEE_APPLE = 10000; // ₦10,000
 export const DEFAULT_SERVICE_FEE_NON_APPLE = 5000; // ₦5,000
