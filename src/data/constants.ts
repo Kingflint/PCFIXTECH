@@ -7,7 +7,7 @@ export const DEFAULT_SERVICE_FEE_APPLE = 10000; // ₦10,000
 export const DEFAULT_SERVICE_FEE_NON_APPLE = 5000; // ₦5,000
 export const DEFAULT_MINIMUM_PICKUP_FEE = 3000; // ₦3,000 (same LGA)
 export const DEFAULT_PICKUP_LOCAL_FEE = 2000; // ₦2,000 (flat for Local)
-export const DEFAULT_OVERSTAY_FEE_PER_DAY = 300; // ₦300 per day after 3 days
+export const DEFAULT_OVERSTAY_FEE_PER_DAY = 300; // overstay defaults can be tuned per-deployment via ifixit_settings/main.
 export const DEFAULT_OVERSTAY_GRACE_DAYS = 3;
 
 export type DeliveryMethod = "pickup-comfort" | "physical" | "pickup-local";
