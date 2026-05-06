@@ -20,7 +20,10 @@ export function removeFromCart(cart: CartItem[], productId: string): CartItem[] 
 }
 
 export function cartSubtotal(cart: CartItem[]): number {
-  return cart.reduce((sum, item) => sum + (item.product.price ?? 0) * item.qty, 0);
+  return cart.reduce((sum, item) => {
+    const price = item.product.variants?.[0]?.price ?? 0;
+    return sum + price * item.qty;
+  }, 0);
 }
 
 export function cartItemCount(cart: CartItem[]): number {

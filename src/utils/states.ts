@@ -3,15 +3,13 @@
 import { NIGERIAN_STATES_LGAS } from "../data/nigerianStatesLGAs";
 
 export function listStates(): string[] {
-  return Object.keys(NIGERIAN_STATES_LGAS).sort();
+  return NIGERIAN_STATES_LGAS.map((entry) => entry.state).sort();
 }
 
 export function lgasFor(state: string): string[] {
-  const exact = (NIGERIAN_STATES_LGAS as Record<string, string[]>)[state];
-  if (exact) return [...exact].sort();
-  const lower = state.toLowerCase();
-  const match = Object.keys(NIGERIAN_STATES_LGAS).find((k) => k.toLowerCase() === lower);
-  return match ? [...(NIGERIAN_STATES_LGAS as any)[match]].sort() : [];
+  const lower = (state || "").toLowerCase();
+  const match = NIGERIAN_STATES_LGAS.find((entry) => entry.state.toLowerCase() === lower);
+  return match ? [...match.lgas].sort() : [];
 }
 
 export function isValidState(state: string): boolean {
