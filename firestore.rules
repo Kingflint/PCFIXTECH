@@ -1,0 +1,81 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      // Admin if listed in settings/main.adminEmails, or flagged on own user doc.
+      return isSignedIn() && (
+        (
+          exists(/databases/$(database)/documents/ifixit_settings/main) &&
+          request.auth.token.email in
+            get(/databases/$(database)/documents/ifixit_settings/main).data.adminEmails
+        )
+        ||
+        (
+          exists(/databases/$(database)/documents/ifixit_users/$(request.auth.uid)) &&
+          get(/databases/$(database)/documents/ifixit_users/$(request.auth.uid)).data.isAdmin == true
+        )
+      );
+    }
+
+    // --- users: each user owns their own doc; admins may read all ---
+    match /ifixit_users/{uid} {
+      allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if isSignedIn() && request.auth.uid == uid;
+      allow update: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // --- site settings: public read, admin write ---
+    // Bootstrap: the first signed-in user may CREATE settings/main only if they
+    // list their own email as an admin (matches App.tsx first-time setup).
+    // After it exists, only an existing admin may update it.
+    match /ifixit_settings/{docId} {
+      allow read: if true;
+      allow create: if isSignedIn()
+        && request.auth.token.email in request.resource.data.adminEmails;
+      allow update, delete: if isAdmin();
+    }
+
+    // --- store products: public read, admin write ---
+    match /ifixit_products/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // --- repair orders: owner reads/creates own; admin manages all ---
+    match /ifixit_orders/{orderId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow update: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // --- store orders: same ownership model ---
+    match /ifixit_store_orders/{orderId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow update: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // --- transactional email (firestore-send-email extension pattern) ---
+    match /mail/{docId} {
+      allow create: if isSignedIn();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /emailLogs/{docId} {
+      allow create: if isSignedIn();
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Everything else: denied by default.
+  }
+}
