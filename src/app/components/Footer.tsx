@@ -34,10 +34,10 @@ export function Footer({ settings, onBookRepair, logoUrl }: FooterProps) {
                   <Wrench className="w-4 h-4 text-white" />
                 </div>
               )}
-              <span className="text-xl font-semibold">iFixit</span>
+              <span className="text-xl font-semibold">PCFIXTECH</span>
             </div>
             <p className="text-sm text-gray-400 mb-4">
-              Professional Apple device repair services in Lagos, Nigeria.
+              Professional windows/mac os device repair services in Indiana, USA.
               Fast, reliable, and affordable.
             </p>
           </div>
@@ -86,7 +86,7 @@ export function Footer({ settings, onBookRepair, logoUrl }: FooterProps) {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800 dark:border-gray-700 text-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">&copy; {new Date().getFullYear()} iFixit. All rights reserved.</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">&copy; {new Date().getFullYear()} PCFIXTECH. All rights reserved.</p>
         </div>
       </div>
     </footer>

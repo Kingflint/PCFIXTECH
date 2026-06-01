@@ -1,6 +1,6 @@
 # Authentication
 
-iFixit uses Firebase Authentication with two providers:
+PCFIXTECH uses Firebase Authentication with two providers:
 
 - Email + password (verified email required).
 - Google.

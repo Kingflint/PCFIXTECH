@@ -102,16 +102,16 @@ export const DEVICE_CONDITIONS: { id: DeviceCondition; label: string; descriptio
 
 // Default business info
 export const DEFAULT_BUSINESS_INFO = {
-  name: "iFixit",
+  name: "PCFIXTECH",
   tagline: "Professional Apple Device Repair",
-  address: "11 Shaba Ojo Street, Igando Lagos",
-  lga: "Ojo",
-  state: "Lagos",
-  phone: "+2347044556735",
+  address: "5846 ACCENT DRIVE, Indianapolis, IN, 46221, USA",
+  lga: "Indianapolis",
+  state: "Indiana",
+  phone: "+13179268452",
   whatsapp: "https://wa.me/hskahsjhsysjksksjs",
   pickupAgentPhone: "08144552678",
   pickupAgentWhatsapp: "https://wa.me/jsoalnesjjsjaknss",
-  email: "support@ifixit.ng",
+  email: "support@pcfixtech.com",
   workingHours: "Mon - Sat: 9:00 AM - 6:00 PM",
 };
 

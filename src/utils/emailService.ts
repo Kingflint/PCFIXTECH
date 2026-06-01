@@ -27,7 +27,7 @@ async function sendEmail(data: EmailData): Promise<void> {
 export async function sendOrderConfirmation(email: string, orderId: string, deviceModel: string, totalPaid: number): Promise<void> {
   await sendEmail({
     to: email,
-    subject: `iFixit - Order Confirmation #${orderId.slice(-8).toUpperCase()}`,
+    subject: `PCFIXTECH - Order Confirmation #${orderId.slice(-8).toUpperCase()}`,
     html: `
       <div style="font-family:Inter,sans-serif;max-width:600px;margin:0 auto;padding:20px">
         <h2 style="color:#0071e3">Order Confirmed!</h2>
@@ -38,7 +38,7 @@ export async function sendOrderConfirmation(email: string, orderId: string, devi
           <tr><td style="padding:8px"><strong>Paid</strong></td><td style="padding:8px">₦${totalPaid.toLocaleString()}</td></tr>
         </table>
         <p style="color:#666;font-size:14px">We'll update you as your repair progresses. Track your order anytime on our website.</p>
-        <p style="color:#999;font-size:12px">— iFixit Team</p>
+        <p style="color:#999;font-size:12px">— PCFIXTECH Team</p>
       </div>`,
   });
 }
@@ -46,7 +46,7 @@ export async function sendOrderConfirmation(email: string, orderId: string, devi
 export async function sendStatusUpdate(email: string, orderId: string, statusLabel: string, note?: string): Promise<void> {
   await sendEmail({
     to: email,
-    subject: `iFixit - Order #${orderId.slice(-8).toUpperCase()} Update: ${statusLabel}`,
+    subject: `PCFIXTECH - Order #${orderId.slice(-8).toUpperCase()} Update: ${statusLabel}`,
     html: `
       <div style="font-family:Inter,sans-serif;max-width:600px;margin:0 auto;padding:20px">
         <h2 style="color:#0071e3">Order Status Update</h2>
@@ -55,7 +55,7 @@ export async function sendStatusUpdate(email: string, orderId: string, statusLab
           <h3 style="color:#0071e3;margin:0">${statusLabel}</h3>
         </div>
         ${note ? `<p style="color:#666;font-size:14px">${note}</p>` : ""}
-        <p style="color:#999;font-size:12px">— iFixit Team</p>
+        <p style="color:#999;font-size:12px">— PCFIXTECH Team</p>
       </div>`,
   });
 }
@@ -63,7 +63,7 @@ export async function sendStatusUpdate(email: string, orderId: string, statusLab
 export async function sendDiagnosisReport(email: string, orderId: string, diagnosis: string, estimatedCost: number): Promise<void> {
   await sendEmail({
     to: email,
-    subject: `iFixit - Diagnosis Ready for Order #${orderId.slice(-8).toUpperCase()}`,
+    subject: `PCFIXTECH - Diagnosis Ready for Order #${orderId.slice(-8).toUpperCase()}`,
     html: `
       <div style="font-family:Inter,sans-serif;max-width:600px;margin:0 auto;padding:20px">
         <h2 style="color:#0071e3">Diagnosis Complete</h2>
@@ -74,7 +74,7 @@ export async function sendDiagnosisReport(email: string, orderId: string, diagno
         </div>
         <p><strong>Estimated Repair Cost:</strong> ₦${estimatedCost.toLocaleString()}</p>
         <p style="color:#666;font-size:14px">Please log in to approve the repair and make payment.</p>
-        <p style="color:#999;font-size:12px">— iFixit Team</p>
+        <p style="color:#999;font-size:12px">— PCFIXTECH Team</p>
       </div>`,
   });
 }

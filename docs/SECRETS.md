@@ -1,6 +1,6 @@
 # Secret management
 
-iFixit deliberately ships only *public* keys to the browser:
+PCFIXTECH deliberately ships only *public* keys to the browser:
 
 - Firebase web client config.
 - Paystack public key.

@@ -1,6 +1,6 @@
 # Accessibility notes
 
-iFixit aims for WCAG 2.1 AA on the public site. Known gaps are tracked
+PCFIXTECH aims for WCAG 2.1 AA on the public site. Known gaps are tracked
 in `docs/ROADMAP.md`.
 
 ## Current commitments

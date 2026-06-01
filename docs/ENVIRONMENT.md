@@ -2,7 +2,7 @@
 
 ## Vite env
 
-iFixit uses Vite, so client-readable environment variables must be prefixed
+PCFIXTECH uses Vite, so client-readable environment variables must be prefixed
 with `VITE_`.
 
 | Variable                | Purpose                                  |

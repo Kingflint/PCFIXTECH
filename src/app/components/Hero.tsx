@@ -96,13 +96,13 @@ export function Hero({ onBookRepair, onLearnMore, enableVideo = false, logoUrl }
               enableVideo ? "bg-white/10 text-white backdrop-blur-sm" : "bg-primary/10 text-primary"
             }`}>
               <Shield className="w-4 h-4" />
-              Certified Apple Device Repair
+              Certified Device Repair
             </div>
 
-            <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 ${
+            <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6 ${
               enableVideo ? "text-white" : "text-foreground"
             }`}>
-              Expert Apple
+              Expert windows/mac os
               <br />
               <span className="text-primary">Device Repair</span>
               <br />
@@ -112,7 +112,7 @@ export function Hero({ onBookRepair, onLearnMore, enableVideo = false, logoUrl }
             <p className={`text-lg mb-8 max-w-lg ${
               enableVideo ? "text-white/70" : "text-muted-foreground"
             }`}>
-              Professional repair services for MacBook, iPhone, iPad, Apple Watch & more.
+              Professional repair services for Super Computers(Custom), MacBook, Windows, iPhone, iPad, Apple Watch & more.
               Fast turnaround, quality parts, and a warranty on every repair.
             </p>
 
@@ -168,7 +168,7 @@ export function Hero({ onBookRepair, onLearnMore, enableVideo = false, logoUrl }
                         </svg>
                       )}
                     </div>
-                    <p className={`text-lg font-semibold ${enableVideo ? "text-white" : "text-foreground"}`}>iFixit</p>
+                    <p className={`text-lg font-semibold ${enableVideo ? "text-white" : "text-foreground"}`}>PCFIXTECH</p>
                     <p className={`text-sm ${enableVideo ? "text-white/70" : "text-muted-foreground"}`}>Repair Specialists</p>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 # Testing
 
-iFixit uses Vitest with the JSDOM environment.
+PCFIXTECH uses Vitest with the JSDOM environment.
 
 ```bash
 npm test           # one-shot run

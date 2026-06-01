@@ -34,7 +34,7 @@ export function Contact({ settings }: ContactProps) {
     e.preventDefault();
     setSending(true);
     // Open WhatsApp with pre-filled message
-    const whatsappMessage = encodeURIComponent(`Hi iFixit! My name is ${name} (${email}). ${message}`);
+    const whatsappMessage = encodeURIComponent(`Hi PCFIXTECH! My name is ${name} (${email}). ${message}`);
     window.open(`${info.whatsapp}?text=${whatsappMessage}`, "_blank");
     setSending(false);
     setName("");
@@ -72,7 +72,7 @@ export function Contact({ settings }: ContactProps) {
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground">Repair Station</h3>
+                <h3 className="font-semibold text-foreground">Office address</h3>
                 <p className="text-muted-foreground text-sm">{info.address}</p>
               </div>
             </div>

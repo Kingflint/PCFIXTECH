@@ -1,6 +1,6 @@
 # Payments
 
-iFixit uses Paystack inline checkout for both repair-fee top-ups and
+PCFIXTECH uses Paystack inline checkout for both repair-fee top-ups and
 store purchases.
 
 ## Reference format

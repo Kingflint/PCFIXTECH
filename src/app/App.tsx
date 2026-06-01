@@ -68,10 +68,10 @@ export default function App() {
       } else if (user?.email) {
         // First time setup: create default settings with current user as admin
         setDoc(settingsRef, {
-          businessName: "iFixit",
-          address: "11 Shaba Ojo Street, Igando Lagos",
-          phone: "+2347044556735",
-          whatsapp: "https://wa.me/2347044556735",
+          businessName: "PCFIXTECH",
+          address: "5846 ACCENT DRIVE, Indianapolis, IN, 46221, USA",
+          phone: "+13179268452",
+          whatsapp: "https://wa.me/13179268452",
           email: user.email,
           adminEmails: [user.email],
           enableNonApple: true,

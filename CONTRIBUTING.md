@@ -1,6 +1,6 @@
-# Contributing to iFixit
+# Contributing to PCFIXTECH
 
-Thanks for your interest in iFixit! This is a small private project, but PRs and issues are welcome.
+Thanks for your interest in PCFIXTECH! This is a small private project, but PRs and issues are welcome.
 
 ## Local setup
 

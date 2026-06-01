@@ -1,6 +1,6 @@
 # Logging
 
-iFixit logs sparingly to the browser console:
+PCFIXTECH logs sparingly to the browser console:
 
 - `info` for state-machine transitions.
 - `warn` for soft failures (offline, auth retry).

@@ -114,7 +114,7 @@ export function Header({
                 <Wrench className="w-4 h-4 text-white" />
               </div>
             )}
-            <span className="text-xl font-semibold text-foreground">iFixit</span>
+            <span className="text-xl font-semibold text-foreground">PCFIXTECH</span>
           </button>
 
           {/* Desktop Nav */}

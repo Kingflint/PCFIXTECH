@@ -1,6 +1,6 @@
 # Architecture
 
-iFixit is a single-page React app backed entirely by Firebase
+PCFIXTECH is a single-page React app backed entirely by Firebase
 (Authentication + Firestore). There is no custom backend.
 
 ## Layers
