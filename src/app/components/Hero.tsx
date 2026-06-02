@@ -31,6 +31,18 @@ export function Hero({ onBookRepair, onLearnMore, enableVideo = false, logoUrl }
     }
   }, [currentVideo, enableVideo]);
 
+  const AI_CAPTIONS = [
+    "Integrating AI to accelerate device repair speed",
+    "Integrated Artificial Intelligent agents that bring speed and efficiency to a whole new level. Our team is continuously integrating efficient products into our services to help us better improve the experiences of our customers.",
+  ];
+  const [aiCaption, setAiCaption] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setAiCaption((prev) => (prev + 1) % AI_CAPTIONS.length);
+    }, 6000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
       {/* Background: video or default gradient */}
@@ -151,27 +163,33 @@ export function Hero({ onBookRepair, onLearnMore, enableVideo = false, logoUrl }
           >
             <div className="relative">
               <div className="w-full aspect-square max-w-lg mx-auto relative">
-                <div className={`absolute inset-8 rounded-3xl flex items-center justify-center shadow-2xl ${
-                  enableVideo
-                    ? "bg-white/10 backdrop-blur-sm border border-white/20"
-                    : "bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 border border-border"
-                }`}>
-                  <div className="text-center">
-                    <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl flex items-center justify-center overflow-hidden ${
-                      enableVideo ? "bg-white/10" : "bg-primary/10"
-                    }`}>
-                      {logoUrl ? (
-                        <img src={logoUrl} alt="Logo" className="w-14 h-14 object-contain" />
-                      ) : (
-                        <svg className={`w-10 h-10 ${enableVideo ? "text-white" : "text-foreground"}`} viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                        </svg>
-                      )}
-                    </div>
-                    <p className={`text-lg font-semibold ${enableVideo ? "text-white" : "text-foreground"}`}>PCFIXTECH</p>
-                    <p className={`text-sm ${enableVideo ? "text-white/70" : "text-muted-foreground"}`}>Repair Specialists</p>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1.2, delay: 0.3 }}
+                  className="absolute inset-8 rounded-3xl overflow-hidden shadow-2xl border border-border bg-gray-200 dark:bg-gray-900"
+                >
+                  <img
+                    src="/seniorsoftwareEngineer.png"
+                    alt="Senior software engineer integrating AI into device repair"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <AnimatePresence mode="wait">
+                      <motion.p
+                        key={aiCaption}
+                        initial={{ opacity: 0, x: 40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -40 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-white text-sm sm:text-base font-medium leading-snug drop-shadow"
+                      >
+                        {AI_CAPTIONS[aiCaption]}
+                      </motion.p>
+                    </AnimatePresence>
                   </div>
-                </div>
+                </motion.div>
 
                 <motion.div
                   animate={{ y: [-5, 5, -5] }}
