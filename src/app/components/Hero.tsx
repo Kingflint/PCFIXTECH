@@ -31,14 +31,27 @@ export function Hero({ onBookRepair, onLearnMore, enableVideo = false, logoUrl }
     }
   }, [currentVideo, enableVideo]);
 
-  const AI_CAPTIONS = [
-    "Integrating AI to accelerate device repair speed",
-    "Integrated Artificial Intelligent agents that bring speed and efficiency to a whole new level. Our team is continuously integrating efficient products into our services to help us better improve the experiences of our customers.",
+  const AI_SLIDES = [
+    {
+      image: "/seniorsoftwareEngineer.png",
+      alt: "Senior software engineer integrating AI into device repair",
+      caption: "Integrating AI to accelerate device repair speed",
+    },
+    {
+      image: "/seniorsoftwareEngineer.png",
+      alt: "Senior software engineer integrating AI into device repair",
+      caption: "Integrated Artificial Intelligent agents that bring speed and efficiency to a whole new level. Our team is continuously integrating efficient products into our services to help us better improve the experiences of our customers.",
+    },
+    {
+      image: "/graphicsdesigner.png",
+      alt: "Taking our clients through the repair process with a guided UI",
+      caption: "Taking our clients through the process. Integrating AI into our repair designs, automating software installation with a UI interface that shows our clients the process.",
+    },
   ];
-  const [aiCaption, setAiCaption] = useState(0);
+  const [aiSlide, setAiSlide] = useState(0);
   useEffect(() => {
     const id = setInterval(() => {
-      setAiCaption((prev) => (prev + 1) % AI_CAPTIONS.length);
+      setAiSlide((prev) => (prev + 1) % AI_SLIDES.length);
     }, 6000);
     return () => clearInterval(id);
   }, []);
@@ -169,23 +182,30 @@ export function Hero({ onBookRepair, onLearnMore, enableVideo = false, logoUrl }
                   transition={{ duration: 1.2, delay: 0.3 }}
                   className="absolute inset-8 rounded-3xl overflow-hidden shadow-2xl border border-border bg-gray-200 dark:bg-gray-900"
                 >
-                  <img
-                    src="/seniorsoftwareEngineer.png"
-                    alt="Senior software engineer integrating AI into device repair"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={AI_SLIDES[aiSlide].image}
+                      src={AI_SLIDES[aiSlide].image}
+                      alt={AI_SLIDES[aiSlide].alt}
+                      initial={{ opacity: 0, scale: 1.04 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 1 }}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </AnimatePresence>
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <AnimatePresence mode="wait">
                       <motion.p
-                        key={aiCaption}
+                        key={aiSlide}
                         initial={{ opacity: 0, x: 40 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -40 }}
                         transition={{ duration: 0.6 }}
                         className="text-white text-sm sm:text-base font-medium leading-snug drop-shadow"
                       >
-                        {AI_CAPTIONS[aiCaption]}
+                        {AI_SLIDES[aiSlide].caption}
                       </motion.p>
                     </AnimatePresence>
                   </div>
