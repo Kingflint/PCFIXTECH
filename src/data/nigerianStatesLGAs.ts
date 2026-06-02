@@ -155,11 +155,73 @@ export const NIGERIAN_STATES_LGAS: StateLGA[] = [
   }
 ];
 
-export function getStates(): string[] {
-  return NIGERIAN_STATES_LGAS.map(s => s.state);
+// United States: states and a representative set of major cities per state.
+export const US_STATES_CITIES: StateLGA[] = [
+  { state: "Alabama", lgas: ["Birmingham", "Montgomery", "Huntsville", "Mobile", "Tuscaloosa"] },
+  { state: "Alaska", lgas: ["Anchorage", "Fairbanks", "Juneau", "Wasilla", "Sitka"] },
+  { state: "Arizona", lgas: ["Phoenix", "Tucson", "Mesa", "Scottsdale", "Tempe", "Chandler"] },
+  { state: "Arkansas", lgas: ["Little Rock", "Fayetteville", "Fort Smith", "Springdale", "Jonesboro"] },
+  { state: "California", lgas: ["Los Angeles", "San Diego", "San Francisco", "San Jose", "Sacramento", "Fresno", "Oakland", "Long Beach"] },
+  { state: "Colorado", lgas: ["Denver", "Colorado Springs", "Aurora", "Fort Collins", "Boulder"] },
+  { state: "Connecticut", lgas: ["Bridgeport", "New Haven", "Hartford", "Stamford", "Waterbury"] },
+  { state: "Delaware", lgas: ["Wilmington", "Dover", "Newark", "Middletown"] },
+  { state: "Florida", lgas: ["Jacksonville", "Miami", "Tampa", "Orlando", "St. Petersburg", "Tallahassee", "Fort Lauderdale"] },
+  { state: "Georgia", lgas: ["Atlanta", "Augusta", "Columbus", "Savannah", "Athens", "Macon"] },
+  { state: "Hawaii", lgas: ["Honolulu", "Hilo", "Kailua", "Kapolei", "Pearl City"] },
+  { state: "Idaho", lgas: ["Boise", "Meridian", "Nampa", "Idaho Falls", "Pocatello"] },
+  { state: "Illinois", lgas: ["Chicago", "Aurora", "Naperville", "Springfield", "Peoria", "Rockford"] },
+  { state: "Indiana", lgas: ["Indianapolis", "Fort Wayne", "Evansville", "South Bend", "Carmel", "Bloomington"] },
+  { state: "Iowa", lgas: ["Des Moines", "Cedar Rapids", "Davenport", "Iowa City", "Ames"] },
+  { state: "Kansas", lgas: ["Wichita", "Overland Park", "Kansas City", "Topeka", "Olathe"] },
+  { state: "Kentucky", lgas: ["Louisville", "Lexington", "Bowling Green", "Owensboro", "Covington"] },
+  { state: "Louisiana", lgas: ["New Orleans", "Baton Rouge", "Shreveport", "Lafayette", "Lake Charles"] },
+  { state: "Maine", lgas: ["Portland", "Lewiston", "Bangor", "Augusta", "Biddeford"] },
+  { state: "Maryland", lgas: ["Baltimore", "Frederick", "Rockville", "Gaithersburg", "Annapolis"] },
+  { state: "Massachusetts", lgas: ["Boston", "Worcester", "Springfield", "Cambridge", "Lowell"] },
+  { state: "Michigan", lgas: ["Detroit", "Grand Rapids", "Ann Arbor", "Lansing", "Flint", "Sterling Heights"] },
+  { state: "Minnesota", lgas: ["Minneapolis", "Saint Paul", "Rochester", "Duluth", "Bloomington"] },
+  { state: "Mississippi", lgas: ["Jackson", "Gulfport", "Southaven", "Biloxi", "Hattiesburg"] },
+  { state: "Missouri", lgas: ["Kansas City", "Saint Louis", "Springfield", "Columbia", "Independence"] },
+  { state: "Montana", lgas: ["Billings", "Missoula", "Great Falls", "Bozeman", "Helena"] },
+  { state: "Nebraska", lgas: ["Omaha", "Lincoln", "Bellevue", "Grand Island", "Kearney"] },
+  { state: "Nevada", lgas: ["Las Vegas", "Henderson", "Reno", "North Las Vegas", "Sparks"] },
+  { state: "New Hampshire", lgas: ["Manchester", "Nashua", "Concord", "Dover", "Rochester"] },
+  { state: "New Jersey", lgas: ["Newark", "Jersey City", "Paterson", "Elizabeth", "Trenton", "Edison"] },
+  { state: "New Mexico", lgas: ["Albuquerque", "Las Cruces", "Rio Rancho", "Santa Fe", "Roswell"] },
+  { state: "New York", lgas: ["New York City", "Buffalo", "Rochester", "Yonkers", "Syracuse", "Albany"] },
+  { state: "North Carolina", lgas: ["Charlotte", "Raleigh", "Greensboro", "Durham", "Winston-Salem", "Fayetteville"] },
+  { state: "North Dakota", lgas: ["Fargo", "Bismarck", "Grand Forks", "Minot", "West Fargo"] },
+  { state: "Ohio", lgas: ["Columbus", "Cleveland", "Cincinnati", "Toledo", "Akron", "Dayton"] },
+  { state: "Oklahoma", lgas: ["Oklahoma City", "Tulsa", "Norman", "Broken Arrow", "Edmond"] },
+  { state: "Oregon", lgas: ["Portland", "Salem", "Eugene", "Gresham", "Hillsboro", "Bend"] },
+  { state: "Pennsylvania", lgas: ["Philadelphia", "Pittsburgh", "Allentown", "Erie", "Reading", "Harrisburg"] },
+  { state: "Rhode Island", lgas: ["Providence", "Warwick", "Cranston", "Pawtucket", "Newport"] },
+  { state: "South Carolina", lgas: ["Columbia", "Charleston", "North Charleston", "Greenville", "Myrtle Beach"] },
+  { state: "South Dakota", lgas: ["Sioux Falls", "Rapid City", "Aberdeen", "Brookings", "Watertown"] },
+  { state: "Tennessee", lgas: ["Nashville", "Memphis", "Knoxville", "Chattanooga", "Clarksville"] },
+  { state: "Texas", lgas: ["Houston", "San Antonio", "Dallas", "Austin", "Fort Worth", "El Paso"] },
+  { state: "Utah", lgas: ["Salt Lake City", "West Valley City", "Provo", "Ogden", "St. George"] },
+  { state: "Vermont", lgas: ["Burlington", "Montpelier", "Rutland", "Essex", "Colchester"] },
+  { state: "Virginia", lgas: ["Virginia Beach", "Norfolk", "Richmond", "Arlington", "Alexandria", "Chesapeake"] },
+  { state: "Washington", lgas: ["Seattle", "Spokane", "Tacoma", "Vancouver", "Bellevue", "Olympia"] },
+  { state: "West Virginia", lgas: ["Charleston", "Huntington", "Morgantown", "Parkersburg", "Wheeling"] },
+  { state: "Wisconsin", lgas: ["Milwaukee", "Madison", "Green Bay", "Kenosha", "Racine"] },
+  { state: "Wyoming", lgas: ["Cheyenne", "Casper", "Laramie", "Gillette", "Rock Springs"] },
+];
+
+export type Country = "Nigeria" | "US";
+
+export const COUNTRIES: Country[] = ["US", "Nigeria"];
+
+function datasetFor(country: Country): StateLGA[] {
+  return country === "US" ? US_STATES_CITIES : NIGERIAN_STATES_LGAS;
 }
 
-export function getLGAsForState(state: string): string[] {
-  const found = NIGERIAN_STATES_LGAS.find(s => s.state === state);
+export function getStates(country: Country = "Nigeria"): string[] {
+  return datasetFor(country).map(s => s.state);
+}
+
+export function getLGAsForState(state: string, country: Country = "Nigeria"): string[] {
+  const found = datasetFor(country).find(s => s.state === state);
   return found ? found.lgas : [];
 }

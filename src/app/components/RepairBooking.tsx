@@ -10,7 +10,7 @@ import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Label } from "./ui/label";
 import { Separator } from "./ui/separator";
-import { getStates, getLGAsForState } from "../../data/nigerianStatesLGAs";
+import { getStates, getLGAsForState, COUNTRIES, type Country } from "../../data/nigerianStatesLGAs";
 import { APPLE_DEVICE_MODELS, NON_APPLE_BRANDS, DEVICE_ISSUES, getIssuesForCategory, isAppleDevice } from "../../data/devices";
 import { DELIVERY_OPTIONS, DEFAULT_SERVICE_FEE_APPLE, DEFAULT_SERVICE_FEE_NON_APPLE, DEFAULT_MINIMUM_PICKUP_FEE, DEFAULT_PICKUP_LOCAL_FEE, formatPrice } from "../../data/constants";
 import type { DeliveryMethod } from "../../data/constants";
@@ -50,6 +50,7 @@ export function RepairBooking({ isOpen, onClose, user, onLogin, settings, onSubm
   const [selectedIssues, setSelectedIssues] = useState<string[]>([]);
   const [additionalNotes, setAdditionalNotes] = useState("");
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod | "">("");
+  const [selectedCountry, setSelectedCountry] = useState<Country | "">("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedLGA, setSelectedLGA] = useState("");
   const [address, setAddress] = useState("");
@@ -104,7 +105,7 @@ export function RepairBooking({ isOpen, onClose, user, onLogin, settings, onSubm
       case 4:
         if (!deliveryMethod) return false;
         if (deliveryMethod === "physical") return true;
-        return !!selectedState && !!selectedLGA && !!address;
+        return !!selectedCountry && !!selectedState && !!selectedLGA && !!address;
       case 5: return !!fullName && !!phone && !!email;
       default: return false;
     }
@@ -136,6 +137,7 @@ export function RepairBooking({ isOpen, onClose, user, onLogin, settings, onSubm
       selectedIssues,
       additionalNotes,
       deliveryMethod,
+      country: selectedCountry || undefined,
       state: selectedState || (settings?.state || "Lagos"),
       lga: selectedLGA || (settings?.lga || "Ojo"),
       address: deliveryMethod === "physical" ? settings?.address : address,
@@ -157,6 +159,7 @@ export function RepairBooking({ isOpen, onClose, user, onLogin, settings, onSubm
     setSelectedIssues([]);
     setAdditionalNotes("");
     setDeliveryMethod("");
+    setSelectedCountry("");
     setSelectedState("");
     setSelectedLGA("");
     setAddress("");
@@ -332,22 +335,31 @@ export function RepairBooking({ isOpen, onClose, user, onLogin, settings, onSubm
                   <div className="space-y-4">
                     <Separator />
                     <h4 className="font-medium">Pickup Location</h4>
+                    <div>
+                      <Label className="mb-2">Country</Label>
+                      <Select value={selectedCountry} onValueChange={(v) => { setSelectedCountry(v as Country); setSelectedState(""); setSelectedLGA(""); }}>
+                        <SelectTrigger><SelectValue placeholder="Select country" /></SelectTrigger>
+                        <SelectContent>
+                          {COUNTRIES.map(c => <SelectItem key={c} value={c}>{c === "US" ? "United States" : c}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                    </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <Label className="mb-2">State</Label>
-                        <Select value={selectedState} onValueChange={(v) => { setSelectedState(v); setSelectedLGA(""); }}>
-                          <SelectTrigger><SelectValue placeholder="Select state" /></SelectTrigger>
+                        <Select value={selectedState} onValueChange={(v) => { setSelectedState(v); setSelectedLGA(""); }} disabled={!selectedCountry}>
+                          <SelectTrigger><SelectValue placeholder={selectedCountry ? "Select state" : "Select a country first"} /></SelectTrigger>
                           <SelectContent>
-                            {getStates().map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                            {selectedCountry && getStates(selectedCountry).map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
                           </SelectContent>
                         </Select>
                       </div>
                       <div>
-                        <Label className="mb-2">LGA</Label>
+                        <Label className="mb-2">{selectedCountry === "US" ? "City" : "LGA"}</Label>
                         <Select value={selectedLGA} onValueChange={setSelectedLGA} disabled={!selectedState}>
-                          <SelectTrigger><SelectValue placeholder="Select LGA" /></SelectTrigger>
+                          <SelectTrigger><SelectValue placeholder={selectedCountry === "US" ? "Select city" : "Select LGA"} /></SelectTrigger>
                           <SelectContent>
-                            {getLGAsForState(selectedState).map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
+                            {selectedCountry && getLGAsForState(selectedState, selectedCountry).map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}
                           </SelectContent>
                         </Select>
                       </div>
