@@ -31,21 +31,28 @@ export function Hero({ onBookRepair, onLearnMore, enableVideo = false, logoUrl }
     }
   }, [currentVideo, enableVideo]);
 
+  const ENGINEER_IMG = "/seniorsoftwareEngineer.png";
+  const DESIGNER_IMG = "/graphicsdesigner.png";
   const AI_SLIDES = [
     {
-      image: "/seniorsoftwareEngineer.png",
+      image: ENGINEER_IMG,
       alt: "Senior software engineer integrating AI into device repair",
       caption: "Integrating AI to accelerate device repair speed",
     },
     {
-      image: "/seniorsoftwareEngineer.png",
+      image: ENGINEER_IMG,
       alt: "Senior software engineer integrating AI into device repair",
       caption: "Integrated Artificial Intelligent agents that bring speed and efficiency to a whole new level. Our team is continuously integrating efficient products into our services to help us better improve the experiences of our customers.",
     },
     {
-      image: "/graphicsdesigner.png",
+      image: DESIGNER_IMG,
       alt: "Taking our clients through the repair process with a guided UI",
-      caption: "Taking our clients through the process. Integrating AI into our repair designs, automating software installation with a UI interface that shows our clients the process.",
+      caption: "Taking our clients through the process",
+    },
+    {
+      image: DESIGNER_IMG,
+      alt: "Taking our clients through the repair process with a guided UI",
+      caption: "Integrating AI in to our repair designs, automating software installation with a UI interface that shows our clients the process.",
     },
   ];
   const [aiSlide, setAiSlide] = useState(0);
