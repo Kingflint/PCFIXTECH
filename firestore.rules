@@ -94,6 +94,14 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // Service requests (IT/network/CCTV/POS/etc. inquiries): owner creates &
+    // reads own; admin manages all.
+    match /ifixit_service_requests/{reqId} {
+      allow read:   if request.auth != null && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
     // Transactional email (firestore-send-email extension pattern).
     match /mail/{docId} {
       allow create: if request.auth != null;

@@ -10,6 +10,7 @@ import { Features } from "./components/Features";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { RepairBooking } from "./components/RepairBooking";
+import { ServiceRequest, SERVICE_DEFS } from "./components/ServiceRequest";
 import { AuthModal } from "./components/AuthModal";
 import { OrderTracker } from "./components/OrderTracker";
 import { AdminDashboard } from "./components/AdminDashboard";
@@ -32,6 +33,7 @@ export default function App() {
   const [storeOrders, setStoreOrders] = useState<StoreOrder[]>([]);
   const [showAuth, setShowAuth] = useState(false);
   const [bookingCategory, setBookingCategory] = useState<string | undefined>();
+  const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
 
   // Auth listener — block unverified email users
@@ -138,6 +140,27 @@ export default function App() {
 
   const handleBookRepair = (category?: string) => {
     requireAuth(() => { setBookingCategory(category); setView("booking"); });
+  };
+
+  const handleRequestService = (serviceId: string) => {
+    requireAuth(() => setActiveServiceId(serviceId));
+  };
+
+  const handleSubmitServiceRequest = async (data: any) => {
+    if (!user) throw new Error("Please sign in to submit a request.");
+    await addDoc(collection(db, "ifixit_service_requests"), {
+      serviceId: data.serviceId,
+      serviceTitle: data.serviceTitle,
+      fields: data.fields,
+      details: data.details,
+      customerName: data.fullName,
+      customerEmail: data.email,
+      customerPhone: data.phone,
+      userId: user.uid,
+      status: "new",
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    });
   };
 
   const handleTrackOrder = () => {
@@ -329,7 +352,7 @@ export default function App() {
       {view === "home" && (
         <>
           <Hero onBookRepair={() => handleBookRepair()} onLearnMore={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} enableVideo={settings?.enableHeroVideo ?? false} logoUrl={settings?.logoUrl} />
-          <Services onBookRepair={() => handleBookRepair()} />
+          <Services onBookRepair={() => handleBookRepair()} onRequestService={handleRequestService} />
           <HowItWorks />
           <Features />
           <Contact settings={settings || undefined} />
@@ -381,6 +404,16 @@ export default function App() {
 
       {showAuth && (
         <AuthModal isOpen={true} onClose={() => { setShowAuth(false); setPendingAction(null); }} onSuccess={handleAuthSuccess} />
+      )}
+
+      {activeServiceId && SERVICE_DEFS[activeServiceId] && (
+        <ServiceRequest
+          service={SERVICE_DEFS[activeServiceId]}
+          user={user}
+          onClose={() => setActiveServiceId(null)}
+          onLogin={() => setShowAuth(true)}
+          onSubmit={handleSubmitServiceRequest}
+        />
       )}
     </div>
   );

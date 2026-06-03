@@ -11,8 +11,11 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 
+// serviceId === "repair" routes to the device-repair booking wizard.
+// Any other serviceId opens the adaptive Request Service form.
 const services = [
   {
+    serviceId: "computer-repair",
     icon: Monitor,
     title: "Computer Repair & IT Support",
     description:
@@ -21,6 +24,7 @@ const services = [
     bg: "bg-blue-50 dark:bg-blue-950/50",
   },
   {
+    serviceId: "network-wireless",
     icon: Wifi,
     title: "Network & Wireless Solutions",
     description:
@@ -29,6 +33,7 @@ const services = [
     bg: "bg-green-50 dark:bg-green-950/50",
   },
   {
+    serviceId: "structured-cabling",
     icon: Cable,
     title: "Structured Cabling",
     description:
@@ -37,6 +42,7 @@ const services = [
     bg: "bg-amber-50 dark:bg-amber-950/50",
   },
   {
+    serviceId: "server-infrastructure",
     icon: Server,
     title: "Server & Infrastructure",
     description:
@@ -45,6 +51,7 @@ const services = [
     bg: "bg-purple-50 dark:bg-purple-950/50",
   },
   {
+    serviceId: "security-surveillance",
     icon: Cctv,
     title: "Security & Surveillance",
     description:
@@ -53,6 +60,7 @@ const services = [
     bg: "bg-red-50 dark:bg-red-950/50",
   },
   {
+    serviceId: "pos-services",
     icon: CreditCard,
     title: "Point of Sale (POS) Services",
     description:
@@ -61,6 +69,7 @@ const services = [
     bg: "bg-cyan-50 dark:bg-cyan-950/50",
   },
   {
+    serviceId: "business-it",
     icon: Briefcase,
     title: "Business IT Services",
     description:
@@ -69,6 +78,7 @@ const services = [
     bg: "bg-indigo-50 dark:bg-indigo-950/50",
   },
   {
+    serviceId: "repair",
     icon: Smartphone,
     title: "Apple Device Repair",
     description:
@@ -80,9 +90,10 @@ const services = [
 
 interface ServicesProps {
   onBookRepair: () => void;
+  onRequestService: (serviceId: string) => void;
 }
 
-export function Services({ onBookRepair }: ServicesProps) {
+export function Services({ onBookRepair, onRequestService }: ServicesProps) {
   return (
     <section id="services" className="py-20 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,7 +123,7 @@ export function Services({ onBookRepair }: ServicesProps) {
             >
               <Card
                 className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-transparent hover:border-primary/20 h-full"
-                onClick={onBookRepair}
+                onClick={() => (service.serviceId === "repair" ? onBookRepair() : onRequestService(service.serviceId))}
               >
                 <CardContent className="pt-6">
                   <div className={`w-12 h-12 rounded-xl ${service.bg} flex items-center justify-center mb-4`}>
