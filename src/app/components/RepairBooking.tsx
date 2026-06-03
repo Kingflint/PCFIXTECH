@@ -61,9 +61,13 @@ export function RepairBooking({ isOpen, onClose, user, onLogin, settings, onSubm
   const totalSteps = 5;
   const nonAppleEnabled = settings?.nonAppleEnabled !== false;
 
-  const filteredCategories = DEVICE_CATEGORIES.filter(c =>
-    c.id === "Non-Apple" ? nonAppleEnabled : true
-  );
+  // iPhone & iPad repairs are only offered to clients using our services from Nigeria.
+  const NIGERIA_ONLY_CATEGORIES: DeviceCategory[] = ["iPhone", "iPad"];
+  const filteredCategories = DEVICE_CATEGORIES.filter(c => {
+    if (c.id === "Non-Apple") return nonAppleEnabled;
+    if (NIGERIA_ONLY_CATEGORIES.includes(c.id)) return selectedCountry === "Nigeria";
+    return true;
+  });
 
   const enabledDeliveryOptions = DELIVERY_OPTIONS.filter(opt => {
     if (opt.id === "pickup-comfort") return settings?.pickupComfortEnabled !== false;
@@ -97,7 +101,7 @@ export function RepairBooking({ isOpen, onClose, user, onLogin, settings, onSubm
 
   const canProceed = (): boolean => {
     switch (step) {
-      case 1: return !!deviceCategory;
+      case 1: return !!selectedCountry && !!deviceCategory;
       case 2:
         if (deviceCategory === "Non-Apple") return !!deviceBrand && !!customModel;
         return !!deviceModel;
@@ -202,9 +206,33 @@ export function RepairBooking({ isOpen, onClose, user, onLogin, settings, onSubm
             {/* Step 1: Device Category */}
             {step === 1 && (
               <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                <h3 className="text-xl font-semibold mb-2">Where are you using our service from?</h3>
+                <p className="text-sm text-muted-foreground mb-4">Select your country. iPhone and iPad repairs are available to clients in Nigeria only.</p>
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {COUNTRIES.map((c) => {
+                    const active = selectedCountry === c;
+                    return (
+                      <button
+                        key={c}
+                        onClick={() => {
+                          setSelectedCountry(c);
+                          setSelectedState("");
+                          setSelectedLGA("");
+                          if (c !== "Nigeria" && (deviceCategory === "iPhone" || deviceCategory === "iPad")) {
+                            setDeviceCategory(""); setDeviceModel(""); setDeviceBrand(""); setCustomModel(""); setSelectedIssues([]);
+                          }
+                        }}
+                        className={`p-4 rounded-xl border-2 transition-all text-center ${active ? "border-primary bg-primary/5" : "border-transparent bg-secondary/50 hover:bg-secondary"}`}
+                      >
+                        <p className={`text-sm font-medium ${active ? "text-primary" : "text-foreground"}`}>{c === "US" ? "United States" : c}</p>
+                      </button>
+                    );
+                  })}
+                </div>
+
                 <h3 className="text-xl font-semibold mb-2">What device needs repair?</h3>
-                <p className="text-sm text-muted-foreground mb-6">Select the type of device you need repaired.</p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <p className="text-sm text-muted-foreground mb-6">{selectedCountry ? "Select the type of device you need repaired." : "Select your country first to see available device types."}</p>
+                <div className={`grid grid-cols-2 sm:grid-cols-3 gap-3 ${selectedCountry ? "" : "opacity-40 pointer-events-none"}`}>
                   {filteredCategories.map((cat) => {
                     const Icon = cat.icon;
                     const selected = deviceCategory === cat.id;
