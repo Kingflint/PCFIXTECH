@@ -90,16 +90,8 @@ export default function App() {
     });
   }, [user]);
 
-  // Dynamic favicon from settings
-  useEffect(() => {
-    if (settings?.faviconUrl) {
-      const link = document.querySelector("link[rel='icon']") as HTMLLinkElement;
-      if (link) {
-        link.type = "image/png";
-        link.href = settings.faviconUrl;
-      }
-    }
-  }, [settings?.faviconUrl]);
+  // Favicon is the baked /favicon.png (set in index.html). No dynamic swap,
+  // so there's no flicker from re-fetching a Storage URL on load.
 
   // User's orders listener
   useEffect(() => {

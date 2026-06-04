@@ -107,13 +107,7 @@ export function Header({
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <button onClick={onHomeClick} className="flex items-center gap-2 group">
-            {logoUrl ? (
-              <img src={logoUrl} alt="Logo" className="w-8 h-8 object-contain rounded-lg" />
-            ) : (
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Wrench className="w-4 h-4 text-white" />
-              </div>
-            )}
+            <img src="/logo.png" alt="PCFIXTECH logo" className="w-8 h-8 object-contain rounded-lg" />
             <span className="text-xl font-semibold text-foreground">PCFIXTECH</span>
           </button>
 

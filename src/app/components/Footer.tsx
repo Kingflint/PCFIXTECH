@@ -27,13 +27,7 @@ export function Footer({ settings, onBookRepair, logoUrl }: FooterProps) {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              {logoUrl ? (
-                <img src={logoUrl} alt="Logo" className="w-8 h-8 object-contain rounded-lg" />
-              ) : (
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <Wrench className="w-4 h-4 text-white" />
-                </div>
-              )}
+              <img src="/logo.png" alt="PCFIXTECH logo" className="w-8 h-8 object-contain rounded-lg" />
               <span className="text-xl font-semibold">PCFIXTECH</span>
             </div>
             <p className="text-sm text-gray-400 mb-4">
