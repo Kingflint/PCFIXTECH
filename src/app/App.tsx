@@ -352,7 +352,7 @@ export default function App() {
       {view === "home" && (
         <>
           <Hero onBookRepair={() => handleBookRepair()} onLearnMore={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} enableVideo={settings?.enableHeroVideo ?? false} logoUrl={settings?.logoUrl} />
-          <Services onBookRepair={() => handleBookRepair()} onRequestService={handleRequestService} />
+          <Services onBookRepair={() => handleBookRepair()} onRequestService={handleRequestService} showAppleRepair={settings?.enableAppleRepair !== false} />
           <HowItWorks />
           <Features />
           <Contact settings={settings || undefined} />

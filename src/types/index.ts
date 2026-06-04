@@ -98,6 +98,7 @@ export interface SiteSettings {
   faviconUrl?: string;
 
   // Feature toggles
+  enableAppleRepair?: boolean;
   enableNonApple?: boolean;
   nonAppleEnabled?: boolean;
   enableStore?: boolean;

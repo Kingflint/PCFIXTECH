@@ -91,9 +91,11 @@ const services = [
 interface ServicesProps {
   onBookRepair: () => void;
   onRequestService: (serviceId: string) => void;
+  showAppleRepair?: boolean;
 }
 
-export function Services({ onBookRepair, onRequestService }: ServicesProps) {
+export function Services({ onBookRepair, onRequestService, showAppleRepair = true }: ServicesProps) {
+  const visibleServices = services.filter(s => s.serviceId !== "repair" || showAppleRepair);
   return (
     <section id="services" className="py-20 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -113,7 +115,7 @@ export function Services({ onBookRepair, onRequestService }: ServicesProps) {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+          {visibleServices.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}

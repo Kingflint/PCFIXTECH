@@ -386,6 +386,10 @@ function SettingsTab({ settings, saving, setSaving }: { settings: SiteSettings |
         <CardHeader><CardTitle>Feature Toggles</CardTitle></CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
+            <Label>Show Apple Device Repair card</Label>
+            <Switch checked={form.enableAppleRepair ?? true} onCheckedChange={v => update("enableAppleRepair", v)} />
+          </div>
+          <div className="flex items-center justify-between">
             <Label>Enable Non-Apple Devices</Label>
             <Switch checked={form.enableNonApple ?? true} onCheckedChange={v => update("enableNonApple", v)} />
           </div>
