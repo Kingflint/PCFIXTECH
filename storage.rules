@@ -1,0 +1,30 @@
+rules_version = '2';
+
+// Firebase Storage rules for the shared bucket (hair-paradise.firebasestorage.app).
+// PCFIXTECH uploads logos/favicons to ifixit_branding/ and product images to
+// ifixit_products/. Both are public images, so anyone may read them; only the
+// admin may write. Paths used by other apps in this bucket are left untouched
+// by these rules and continue to follow whatever rules you already had.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == "flint.cheeze@gmail.com";
+    }
+
+    // PCFIXTECH branding (logo, favicon): public read, admin write.
+    match /ifixit_branding/{file=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // PCFIXTECH store product images: public read, admin write.
+    match /ifixit_products/{file=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+  }
+}

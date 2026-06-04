@@ -337,7 +337,7 @@ export default function App() {
         user={user}
         isAdmin={isAdmin}
         storeEnabled={settings?.enableStore ?? false}
-        logoUrl={settings?.logoUrl}
+        logoUrl={settings?.logoUrl || "/logo.png"}
         currentView={view}
         onBookRepair={() => handleBookRepair()}
         onTrackOrder={handleTrackOrder}
@@ -351,12 +351,12 @@ export default function App() {
 
       {view === "home" && (
         <>
-          <Hero onBookRepair={() => handleBookRepair()} onLearnMore={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} enableVideo={settings?.enableHeroVideo ?? false} logoUrl={settings?.logoUrl} />
+          <Hero onBookRepair={() => handleBookRepair()} onLearnMore={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} enableVideo={settings?.enableHeroVideo ?? false} logoUrl={settings?.logoUrl || "/logo.png"} />
           <Services onBookRepair={() => handleBookRepair()} onRequestService={handleRequestService} showAppleRepair={settings?.enableAppleRepair !== false} />
           <HowItWorks />
           <Features />
           <Contact settings={settings || undefined} />
-          <Footer settings={settings || undefined} onBookRepair={() => handleBookRepair()} logoUrl={settings?.logoUrl} />
+          <Footer settings={settings || undefined} onBookRepair={() => handleBookRepair()} logoUrl={settings?.logoUrl || "/logo.png"} />
         </>
       )}
 
